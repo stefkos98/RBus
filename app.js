@@ -26,8 +26,19 @@ async function run() {
  
     await client.connect();
   }
+  app.get("/", function (req, res) {
+    res.render("home.ejs", { user: req.user });
+});
 
+app.get("/rentabus", function (req, res) {
+  res.render("rentabus.ejs", { user: req.user });
+});
 
+app.get("/autoprevoznici", async function (req, res) {
+  const rs = await client.execute("SELECT * FROM rbus.\"Autoprevoznik\"");
+  console.log(rs.rows.length);
+  res.render("autoprevoznici.ejs", { user: req.user, prevoznici:rs.rows  });
+});
 // STARTOVANJE SERVERA
 app.listen(3000, async function () {
     console.log("Listening on port 3000");

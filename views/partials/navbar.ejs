@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+
+<nav class="navbar navbar-expand-xl sticky-top navbar-dark bg-dark" style='z-index: 1;'>
+   <img src='/Logo.png' width="50" height="50"></img>
+   <a class="navbar-brand" href="/">RBus</a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+   </button>
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+         <li class="nav-item ">
+            <a class="nav-link" href="/">Početna stranica <span class="sr-only">(current)</span></a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" href="/rentabus">Iznajmi bus</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" href="/autoprevoznici">Informacije o autoprevoznicima</a>
+         </li>
+         </li>
+      </ul>
+      <ul class='navbar-nav '>
+        
+         <% if(user===undefined) {%>
+         <li class='nav-item'>
+            <a class='nav-link' href='/login'>Logovanje</a>
+         </li>
+         <li class='nav-item'>
+            <a class='nav-link' href='/register'>Registracija</a>
+         </li>
+         <%} else { %>
+         <span class="navbar-text">
+            Zdravo <%= user.username %>
+         </span>
+         <ul class='navbar-nav mr-auto'>
+            <li class="nav-item">
+               <a class="nav-link" href="/profile">Profil</a>
+            </li>
+
+            <li class="nav-item">
+               <a class="nav-link" href="/logout">Odjavi se</a>
+            </li>
+            <!-- <li class='nav-item'>
+                  <form method='post' action='/logout'>
+                     <button class="btn btn-link" type="submit">Odjavi se</button>
+                  </form>
+               </div>
+            </li> -->
+
+
+
+         </ul>
+         <%}%>
+      </ul>
+   </div>
+</nav>
+
+ 

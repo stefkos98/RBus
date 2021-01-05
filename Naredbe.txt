@@ -1,1 +1,35 @@
 Baze naredbe
+
+CREATE TABLE "Autoprevoznik"(
+  "AutoprevoznikID" text,
+	email text, 
+	naziv text,
+	telefon text,
+	PRIMARY KEY ("AutoprevoznikID")
+);
+INSERT INTO rbus."Autoprevoznik" ("AutoprevoznikID",email,naziv,telefon) VALUES('12345','stefan@hotmail.com','Jugoprevoz','061234567');
+
+CREATE TABLE "Linija"(
+  "start" text,
+  "cilj" text,
+  "LinijaID" text,
+  PRIMARY KEY ("LinijaID")
+);
+CREATE TABLE "Termin"(
+  "TerminID" text,
+  "AutoprevoznikID" text,
+  "LinijaID" text,
+  mesta int,
+  popunjena int,
+  datum DATE,
+  cena int,
+  PRIMARY KEY (("LinijaID", datum), "AutoprevoznikID")
+);
+CREATE TABLE "Rezervacija" (
+    "resID" text,
+	"TerminID" text,      
+    name text,
+    phone text,
+    email text,
+    PRIMARY KEY ("resID")
+);
