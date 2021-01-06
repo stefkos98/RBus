@@ -10,132 +10,51 @@
         <title>RBus</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="pom.css">
     </head>
     <body>
         <%- include("partials/navbar.ejs") %>
-        <div class="hero-content changed">
-            <div class="advance-search">
-              <form class="search-from" method="POST" name="pretraga" id="pretraga">
-                <div class="row">
-                    <div class="col-12 one-way-round">
-                        <div class="radio-group">
-                            <input type="radio" id="one-way-direction" name="povratna" value="NE" class="form-control" checked="">
-                            <label for="one-way-direction">Karta u jednom smjeru</label>
-                            <input type="radio" id="round" name="povratna" value="DA" class="form-control">
-                            <label id="round_label" for="round">Povratna karta</label>
-                        </div>
+            <div class='container' style='width:50%;'>
+                <form method="post" action="/">
+                  <h1 class="h2 mb-3 font-weight-normal" style='margin-top:5%;'>Izaberite liniju</h1>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="povratna" id="exampleRadios1" value="NE" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                      Karta u jednom smeru
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="povratna" id="exampleRadios2" value="DA">
+                    <label class="form-check-label" for="exampleRadios2">
+                      Povratna karta
+                    </label>
+                  </div><br />
+                  <div id="blabla">
+                      <label  id="bla1">Polaziste:</label>
+                      <input type="text" id="inputPolaziste" class="form-control" name='polaziste' required autofocus/>
                     </div>
-                </div>
-                <div class="row">
-                  <div class="col-12 col-md-3 single-input departure-point">
-                      <i class="fas fa-map-marker-alt"></i>
-                      <input type="text" name="mjesto_polaska_naziv" id="mjesto_polaska_naziv" autocomplete="off" class="form-control ui-autocomplete-input" value="" placeholder="Polazište">
+                      <div id="blabla">
+                      <label id="bla">Odrediste:</label>
+                      <input type="text" id="inputOdrediste" class="form-control" name='odrediste'  required autofocus/>
+                    </div>
+                      <label>Datum polaska:</label>
+                      <input type="date" id="inputDatum1" class="form-control" name='datum1' placeholder="Datum polaska" required autofocus/>
+                      <div id="datum2">
+                      <label>Datum povratka:</label>
+                      <input type="date" id="inputDatum2" class="form-control" name='datum2' placeholder="Datum povratka" autofocus/>
+                      </div>
+                      <label>Broj putnika:</label>
+                      <input type="number" id="inputBrojPutnika" class="form-control" name="brputnika" value="1" min="1" max="30" required autofocus/>
 
-                      <input type="text" style="display:none" id="mjesto_polaska_naziv_osnovni" name="mjesto_polaska_naziv_osnovni" value="">
-                      <input type="text" style="display:none" id="mjesto_polaska" name="mjesto_polaska" value="">
-                      <input type="text" style="display:none" id="mjesto_polaska_prevod" name="mjesto_polaska_prevod" value="">
-
+                        <label>Autoprevoznik:</label>
+                        <input type="text" id="inputAutoprevoznik" class="form-control" name='prevoznik' autofocus/>
+                    <br />
+                      <button class="btn btn-lg btn-primary btn-block" type="submit">Pretrazi</button>
+                      
+                    </form>
                   </div>
-
-                  <div class="col-12 col-md-1 exchange" onclick="zamjenaStanica();">
-                             <i class="fas fa-exchange-alt"></i>
-                  </div>
-
-                  <div class="col-12 col-md-3 single-input destination-point">
-                      <i class="fas fa-map-marker-alt"></i>
-                      <input name="mjesto_dolaska_naziv" id="mjesto_dolaska_naziv" type="text" class="form-control ui-autocomplete-input" value="" placeholder="Odredište" autocomplete="off">
-                      <input type="text" style="display:none" id="mjesto_dolaska_naziv_osnovni" name="mjesto_dolaska_naziv_osnovni" value="">
-                      <input type="text" style="display:none" id="mjesto_dolaska" name="mjesto_dolaska" value="">
-                      <input type="text" style="display:none" id="mjesto_dolaska_prevod" name="mjesto_dolaska_prevod" value="">
-
-                  </div>
-                  <div class="col-6 col-md-2 single-date-input departureCalender-wrapper">
-                      <input id="datum_polaska" autocomplete="off" type="text" class="form-control" value="05.01.2021" placeholder="Datum polaska">
-                      <i class="far fa-calendar-alt"></i>
-                  </div>
-
-                  <div class="col-6 col-md-2 single-date-input returnCalender-wrapper">
-                      <input id="datum_povratka" autocomplete="off" type="text" class="form-control" value="" placeholder="Datum povratka">
-                      <i class="far fa-calendar-alt"></i>
-                  </div>
-                  <div class="col-12 col-md-1 passenger">
-                        <div class="form-control ">
-                            <div class="dropdown show">
-                                <a class="btn dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-user-friends"></i>
-                                </a>
-                                <div class="dropdown-menu">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <a class="dropdown-item" href="#">Broj putnika</a>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <i class="fas fa-minus"></i>
-                                            <input class="counter" type="number" id="passenger_count" name="passenger_count" value="1">
-                                            <i class="fas fa-plus"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                  </div>
-                  <div class="col-12 col-md-2 submit-btn">
-                        <button type="submit" name="pretrazi_linije" id="pretrazi_linije" class="primary-btn" onclick="formirajLink();">PRETRAŽI <i class="fas fa-angle-double-right"></i></button>
-                  </div>
-                  </div>
-
-                    <!-- div za prevoznika-->
-            <div class="col-md-12 col-sm-12 col-xs-12 hhh" id="div-prevoznik" style="display: none;">
-                <label for="prevoznik_naziv" onclick="$('#prevoznik_naziv').trigger('click');">Prevoznik</label>
-                <div class="input-group margin-bottom-sm">
-                    <input type="text" class="form-control-vertikalno" id="prevoznik_naziv" name="prevoznik_naziv" placeholder="Prevoznik" value="" onkeypress="getOptionOnEnter(event,'prevoznik_naziv');" onblur=" if(this.value=='') $('#prevoznik_id').val('0'); ">
-                    <span class="input-group-addon"><i class="fa fa-map-marker fa-fw"></i></span>
-                    <input type="text" style="display:none" id="prevoznik_id" name="prevoznik_id" value="0">
-                    <input type="text" style="display:none" id="preduzece_id" name="preduzece_id" value="132">
-                    <input type="text" style="display:none" id="affiliate_id" name="affiliate_id" value="0">
-                    <input type="text" style="display:none" id="preduzece_adm_id" name="preduzece_adm_id" value="">
-
-
-
-                    <input type="text" style="display:none" id="sortiranje_cijena" name="sortiranje_cijena">
-                    <input type="text" style="display:none" id="sortiranje_vrijeme" name="sortiranje_vrijeme">
-                </div>
-            </div>
-
-
-                    <input type="text" style="display:none" id="jezik_label" name="jezik_label" value="MNE">
-                    <input type="text" style="display:none" id="jezik" name="jezik" value="MNE">
-                    <input type="text" style="display:none" id="host" name="host" value="https://busticket4.me">
-                    <input type="text" style="display:none;" id="trenutni_datum" name="trenutni_datum" value="05.01.2021">
-                    <!--<div class="row">
-                            <div class="col-md-12 search-col-padding p-b-t-15 ">
-                                                                        <a class="lnk float-right"  href="/MNE/uslovi-koristenja">Uslovi korištenja</a>
-                            </div>
-                    </div>-->
-
-                    <div class="row bus-equipment">
-                        <div class="col-md-12 filter-area">
-                            <div class="col-md-12">
-                                <div class="advanced-search">Napredna pretraga<i class="fas fa-chevron-down"></i></div>
-                            </div>
-                            <div class="filter-wrapper">
-                                <div class="col-8 col-sm-4 name-filter filter">
-                                    <h3><i class="fa fa-bus"></i>Prevoznik</h3>
-                                    <div class="input-group margin-bottom-sm">
-                                        <input type="text" id="prevoznik_naziv_trazi" name="prevoznik_naziv_trazi" class="form-control ui-autocomplete-input" placeholder="Prevoznik" value="" autocomplete="off">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-4">
-                                </div>
-                               
-              
-            </div>
-            </div>
-            </div>
-            </form>
-            </div>
-            </div>
+                  <script src="pom.js"></script>
         <%- include("partials/footer.ejs") %>
 
         <script src="" async defer></script>

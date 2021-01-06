@@ -1,0 +1,14 @@
+#datum2 {
+    display: none;
+}
+
+#blabla{
+    display: flex;
+    flex-direction: row;
+}
+#bla{
+    margin-right: 10px;
+}
+#bla1{
+    margin-right: 18px;
+}
