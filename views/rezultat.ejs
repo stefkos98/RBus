@@ -80,11 +80,11 @@
                                         <%if (povratna=="NE"){%>
                                         <% if(user!= undefined){%>
                                             <% if(prevoznik==undefined) {%>
-                                                <form method='post' action='/rezervisi/<%=polaziste%>/<%=odrediste%>/<%=user.id%>/<%=brputnika%>/<%=termini1[i].mesta%>/<%=termini1[i].TerminID%>/<%=IDLinije1%>/<%=IDLinije2%>/<%=datum1%>/<%=datum2%>/<%=termini1[i].imeprevoznika%>/<%=termini1[i].vreme%>/<%=termini1[i].popunjena%>' class="form-container">
+                                                <form method='post' action='/rezervisi/<%=polaziste%>/<%=odrediste%>/<%=brputnika%>/<%=termini1[i].mesta%>/<%=termini1[i].TerminID%>/<%=IDLinije1%>/<%=IDLinije2%>/<%=datum1%>/<%=datum2%>/<%=termini1[i].imeprevoznika%>/<%=termini1[i].vreme%>/<%=termini1[i].popunjena%>' class="form-container">
                                                     <td><button type="submit" class="btn btn-dark">Rezervisi</button></td>
                                                 </form>
                                             <%}else{%>
-                                                <form method='post' action='/rezervisi/<%=polaziste%>/<%=odrediste%>/<%=user.id%>/<%=brputnika%>/<%=termini1[i].mesta%>/<%=termini1[i].TerminID%>/<%=IDLinije1%>/<%=IDLinije2%>/<%=datum1%>/<%=datum2%>/<%=prevoznik%>/<%=termini1[i].vreme%>/<%=termini1[i].popunjena%>' class="form-container">
+                                                <form method='post' action='/rezervisi/<%=polaziste%>/<%=odrediste%>/<%=brputnika%>/<%=termini1[i].mesta%>/<%=termini1[i].TerminID%>/<%=IDLinije1%>/<%=IDLinije2%>/<%=datum1%>/<%=datum2%>/<%=prevoznik%>/<%=termini1[i].vreme%>/<%=termini1[i].popunjena%>' class="form-container">
                                                     <td><button type="submit" class="btn btn-dark">Rezervisi</button></td>
                                                 </form>
                                             <%}%>
@@ -153,13 +153,13 @@
                                         <%}%>
                                         <% if(user!= undefined){%>
                                             <% if(prevoznik==undefined) {%>
-                                                <form method='post' action='/rezervisi/<%=polaziste%>/<%=odrediste%>/<%=user.id%>/<%=brputnika%>/<%=termini2[i].mesta%>/<%=termini2[i].TerminID%>/<%=IDLinije1%>/<%=IDLinije2%>/<%=datum1%>/<%=datum2%>/<%=termini2[i].imeprevoznika%>/<%=termini2[i].vreme%>/<%=termini2[i].popunjena%>' class="form-container">
+                                                <form method='post' action='/rezervisi/<%=polaziste%>/<%=odrediste%>/<%=brputnika%>/<%=termini2[i].mesta%>/<%=termini2[i].TerminID%>/<%=IDLinije1%>/<%=IDLinije2%>/<%=datum1%>/<%=datum2%>/<%=termini2[i].imeprevoznika%>/<%=termini2[i].vreme%>/<%=termini2[i].popunjena%>' class="form-container">
                                                     
                                                     <td><button type="submit" class="btn btn-dark">Rezervisi</button></td>
                                                     <input style="display:none" type="text" name="first" class="first" />
                                                 </form>
                                             <%}else{%>
-                                                <form method='post' action='/rezervisi/<%=polaziste%>/<%=odrediste%>/<%=user.id%>/<%=brputnika%>/<%=termini2[i].mesta%>/<%=termini2[i].TerminID%>/<%=IDLinije1%>/<%=IDLinije2%>/<%=datum1%>/<%=datum2%>/<%=prevoznik%>/<%=termini2[i].vreme%>/<%=termini2[i].popunjena%>' class="form-container">
+                                                <form method='post' action='/rezervisi/<%=polaziste%>/<%=odrediste%>/<%=brputnika%>/<%=termini2[i].mesta%>/<%=termini2[i].TerminID%>/<%=IDLinije1%>/<%=IDLinije2%>/<%=datum1%>/<%=datum2%>/<%=prevoznik%>/<%=termini2[i].vreme%>/<%=termini2[i].popunjena%>' class="form-container">
                                                     
                                                     <td><button type="submit" class="btn btn-dark">Rezervisi</button></td>
                                                     <input style="display:none" type="text" name="second" class="second" />
