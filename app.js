@@ -672,20 +672,20 @@ app.delete("/profile/prevoznik/delete/:email", async function (req, res) {
   var rs = await client.execute(`SELECT * FROM rbus."Termin"`);
   //brisanje termina
   for (var i = 0; i < rs.rows.length; i++) {
-    if ((uuidBuffer.toString(rs.rows[i].AutoprevoznikID)) == req.user.AutoprevoznikID) {
-      await client.execute(`DELETE FROM rbus."Termin" WHERE "LinijaID"=${uuidBuffer.toString(rs.rows[i].LinijaID.buffer)} AND datum='${rs.rows[0].datum}' AND imeprevoznika='${rs.rows[i].imeprevoznika}' AND "TerminID"=${uuidBuffer.toString(rs.rows[i].TerminID.buffer)} AND vreme='${rs.rows[i].vreme}`);
+    if ((uuidBuffer.toString(rs.rows[i].AutoprevoznikID.buffer)) == req.user.AutoprevoznikID) {
+      await client.execute(`DELETE FROM rbus."Termin" WHERE "LinijaID"=${uuidBuffer.toString(rs.rows[i].LinijaID.buffer)} AND datum='${rs.rows[0].datum}' AND imeprevoznika='${rs.rows[i].imeprevoznika}' AND "TerminID"=${uuidBuffer.toString(rs.rows[i].TerminID.buffer)} AND vreme='${rs.rows[i].vreme}'`);
 
       var IDresuser = await client.execute(`SELECT * FROM rbus."TerminRezervacija" WHERE "TerminID"=${uuidBuffer.toString(rs.rows[i].TerminID.buffer)}`);
       // brisanje rezervacija
-      for (var j = 0; i < IDresuser.rows.length; j++) {
+      for (var j = 0; j < IDresuser.rows.length; j++) {
         await client.execute(`DELETE FROM rbus."Rezervacija" WHERE "userID"=${uuidBuffer.toString(IDresuser.rows[j].userID.buffer)} AND "resID"=${uuidBuffer.toString(IDresuser.rows[j].resID.buffer)} AND "TerminID"=${uuidBuffer.toString(rs.rows[i].TerminID.buffer)}`);
         // brisanjte terminrezervacija
         await client.execute(`DELETE FROM rbus."TerminRezervacija" WHERE "TerminID"=${uuidBuffer.toString(rs.rows[i].TerminID.buffer)} AND  "userID"=${uuidBuffer.toString(IDresuser.rows[j].userID.buffer)} AND "resID"=${uuidBuffer.toString(IDresuser.rows[j].resID.buffer)}`);
       }
       // brisanje sedista
       var sedista = await client.execute(`SELECT * FROM rbus."Sedista" WHERE "TerminID"=${uuidBuffer.toString(rs.rows[i].TerminID.buffer)}`);
-      for (var j = 0; i < sedista.rows.length; j++) {
-        await client.execute(`DELETE FROM rbus."Sedista" WHERE "TerminID"=${uuidBuffer.toString(rs.rows[j].TerminID.buffer)} AND brojsedista=${sedista.rows[j].brojsedista}`);
+      for (var j = 0; j < sedista.rows.length; j++) {
+        await client.execute(`DELETE FROM rbus."Sedista" WHERE "TerminID"=${uuidBuffer.toString(sedista.rows[j].TerminID.buffer)} AND brojsedista=${sedista.rows[j].brojsedista}`);
       }
 
     }
@@ -759,7 +759,7 @@ app.get("/autoprevoznici", async function (req, res) {
 // STARTOVANJE SERVERA
 app.listen(3000, async function () {
   console.log("Listening on port 3000");
-
+  console.log(await bcrypt.hash('Ss1998!!!',8));
   run();
 });
 // GASENJE APP
