@@ -663,25 +663,25 @@ app.delete("/profile/korisnik/:email", async function (req, res) {
 });
 
 // BRISANJE PROFILA PREVOZNIKA PROVERITI DA LI RADI
-app.delete("/profile/prevoznik/:email", async function (req, res) {
-  await client.execute(`DELETE FROM rbus."Autoprevoznik" WHERE email='${req.params.email}' and "AutoprevoznikID"=${req.user.id}`);
+app.delete("/profile/prevoznik/delete/:email", async function (req, res) {
+  await client.execute(`DELETE FROM rbus."Autoprevoznik" WHERE email='${req.params.email}' and "AutoprevoznikID"=${req.user.AutoprevoznikID}`);
   var rs = await client.execute(`SELECT * FROM rbus."Termin"`);
   //brisanje termina
   for (var i = 0; i < rs.rows.length; i++) {
     if ((uuidBuffer.toString(rs.rows[i].AutoprevoznikID)) == req.user.AutoprevoznikID) {
-      await client.execute(`DELETE FROM rbus."Termin" WHERE "LinijaID"=${uuidBuffer.toString(rs.rows[i].LinijaID)} AND datum='${rs.rows[0].datum}' AND imeprevoznika='${rs.rows[i].imeprevoznika}' AND "TerminID"=${uuidBuffer.toString(rs.rows[i].TerminID)} AND vreme='${rs.rows[i].vreme}`);
+      await client.execute(`DELETE FROM rbus."Termin" WHERE "LinijaID"=${uuidBuffer.toString(rs.rows[i].LinijaID.buffer)} AND datum='${rs.rows[0].datum}' AND imeprevoznika='${rs.rows[i].imeprevoznika}' AND "TerminID"=${uuidBuffer.toString(rs.rows[i].TerminID.buffer)} AND vreme='${rs.rows[i].vreme}`);
 
-      var IDresuser = await client.execute(`SELECT * FROM rbus."TerminRezervacija" WHERE "TerminID"=${uuidBuffer.toString(rs.rows[i].TerminID)}`);
+      var IDresuser = await client.execute(`SELECT * FROM rbus."TerminRezervacija" WHERE "TerminID"=${uuidBuffer.toString(rs.rows[i].TerminID.buffer)}`);
       // brisanje rezervacija
       for (var j = 0; i < IDresuser.rows.length; j++) {
-        await client.execute(`DELETE FROM rbus."Rezervacija" WHERE "userID"=${uuidBuffer.toString(IDresuser.rows[j].userID.buffer)} AND "resID"=${uuidBuffer.toString(IDresuser.rows[j].resID.buffer)} AND "TerminID"=${uuidBuffer.toString(rs.rows[i].TerminID)}`);
+        await client.execute(`DELETE FROM rbus."Rezervacija" WHERE "userID"=${uuidBuffer.toString(IDresuser.rows[j].userID.buffer)} AND "resID"=${uuidBuffer.toString(IDresuser.rows[j].resID.buffer)} AND "TerminID"=${uuidBuffer.toString(rs.rows[i].TerminID.buffer)}`);
         // brisanjte terminrezervacija
-        await client.execute(`DELETE FROM rbus."TerminRezervacija" WHERE "TerminID"=${uuidBuffer.toString(rs.rows[i].TerminID)} AND  "userID"=${uuidBuffer.toString(IDresuser.rows[j].userID.buffer)} AND "resID"=${uuidBuffer.toString(IDresuser.rows[j].resID.buffer)}`);
+        await client.execute(`DELETE FROM rbus."TerminRezervacija" WHERE "TerminID"=${uuidBuffer.toString(rs.rows[i].TerminID.buffer)} AND  "userID"=${uuidBuffer.toString(IDresuser.rows[j].userID.buffer)} AND "resID"=${uuidBuffer.toString(IDresuser.rows[j].resID.buffer)}`);
       }
       // brisanje sedista
-      var sedista = await client.execute(`SELECT * FROM rbus."Sedista" WHERE "TerminID"=${uuidBuffer.toString(rs.rows[i].TerminID)}`);
+      var sedista = await client.execute(`SELECT * FROM rbus."Sedista" WHERE "TerminID"=${uuidBuffer.toString(rs.rows[i].TerminID.buffer)}`);
       for (var j = 0; i < sedista.rows.length; j++) {
-        await client.execute(`DELETE FROM rbus."Sedista" WHERE "TerminID"=${uuidBuffer.toString(rs.rows[j].TerminID)} AND brojsedista=${sedista.rows[j].brojsedista}`);
+        await client.execute(`DELETE FROM rbus."Sedista" WHERE "TerminID"=${uuidBuffer.toString(rs.rows[j].TerminID.buffer)} AND brojsedista=${sedista.rows[j].brojsedista}`);
       }
 
     }
@@ -736,7 +736,7 @@ app.delete("/profile/korisnik/:email/:resid", async (req, res) => {
   await client.execute(`DELETE FROM rbus."Sedista" WHERE "TerminID"=${uuidBuffer.toString(rs.rows[0].TerminID.buffer)} AND brojsedista=${sediste}`);
   var novibroj = rs.rows[0].popunjena - 1;
   if (novibroj < 0) {
-    novibroj = 12;
+    novibroj = 0;
   }
   await client.execute(`UPDATE rbus."Termin" SET popunjena=${parseInt(novibroj)} WHERE "LinijaID"=${uuidBuffer.toString(rs.rows[0].LinijaID.buffer)} AND "datum"='${rs.rows[0].datum}' AND imeprevoznika='${rs.rows[0].imeprevoznika}' AND "TerminID"=${uuidBuffer.toString(rs.rows[0].TerminID.buffer)} AND vreme='${rs.rows[0].vreme}'`);
   req.flash("success", "Uspesno obrisana rezervacija");
