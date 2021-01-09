@@ -165,6 +165,7 @@ app.post("/", async function (req, res) {
   var tabela2 = [];
   var IDLinije1 = undefined;
   var IDLinije2 = undefined;
+  var t=true;
   if (povratna == "NE" && prevoznik == undefined) {
     IDLinije1 = await client.execute("SELECT \"LinijaID\" FROM rbus.\"Linija\" WHERE start='" + polaziste + "' AND cilj='" + odrediste + "'");
     if (IDLinije1.rows[0] != undefined) {
@@ -179,7 +180,7 @@ app.post("/", async function (req, res) {
     else {
       req.flash("error", "Nema takve linije!");
       res.redirect('back');
-
+      t=false;
     }
   }
   else if (povratna == "NE" && prevoznik != undefined) {
@@ -199,6 +200,7 @@ app.post("/", async function (req, res) {
       req.flash("error", "Nema takve linije!");
       res.redirect('back');
 
+      t=false;
     }
   }
   else if (povratna == "DA" && prevoznik == undefined) {
@@ -230,6 +232,7 @@ app.post("/", async function (req, res) {
       req.flash("error", "Nema takve linije!");
       res.redirect('back');
 
+      t=false;
     }
   }
   else {
@@ -260,9 +263,10 @@ app.post("/", async function (req, res) {
     else {
       req.flash("error", "Nema takve linije!");
       res.redirect('back');
+      t=false;
     }
   }
-  if (IDLinije1 != undefined)
+  if (t)
     res.render("rezultat.ejs", { user: req.user, brputnika, polaziste, odrediste, datum1, datum2, prevoznik, povratna, termini1: tabela1, termini2: tabela2, IDLinije1, IDLinije2 });
 });
 //rezervacija
