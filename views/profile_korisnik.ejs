@@ -24,7 +24,7 @@
                 <p class='lead' style="color: rgb(0, 89, 255);">RBus</p>
                 <div class='list-group'>
                     <button id="b1" type="button" class='list-group-item list-group-item-action'
-                        data-toggle="list">Prikazi podatke o korisniku</button>
+                        data-toggle="list">Prikaži podatke o korisniku</button>
                     <button id="b2" type="button" class='list-group-item list-group-item-action'
                         data-toggle="list">Vaše rezervacije</button>
                 </div>
@@ -71,13 +71,13 @@
                         <div class="form-group">
                             <label for="inputUsername">Username:</label>
                             <input type="text" id="inputUsername" class="form-control" name='username'
-                                value=<%= user.username %> required>
+                                value=<%= user.username %> required disabled>
                         </div>
 
                         <div class="form-group">
                             <label for="inputEmail">Email:</label>
                             <input type="email" id="inputEmail" class="form-control" name='email'
-                                value=<%= user.email %> required>
+                                value=<%= user.email %> required disabled>
                             <small id="emailHelp" class="form-text text-muted">Necemo podeliti vasu adresu ni sa
                                 kim.</small>
                         </div>
@@ -94,7 +94,7 @@
                                 title="Mora da sadrzi bar jedan broj, jedno malo slovo, jedno veliko slovo i bar 7 karaktera."
                                 required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Sacuvaj</button>
+                        <button type="submit" class="btn btn-primary">Sačuvaj</button>
                     </form>
                     <%}%>
                 <br>
@@ -127,42 +127,42 @@
                 </div>
                 <div id="id3" class='col-md-9'>
                     
-                    <h1 style="color:rgb(0, 110, 255)">Vase rezervacije:</h1>
-                    <% if(termini!=undefined) {%>
-                    <% for(var i=0;i<termini.length;i++){%>
+                    <h1 style="color:rgb(0, 110, 255)">Vaše rezervacije:</h1>
+                    <% if(rezervacije!=undefined) {%>
+                    <% for(var i=0;i<rezervacije.length;i++){%>
 
                     <dl class="row">
+                        <dt class="col-sm-3">ID rezervacije:</dt>
+                        <dd class="col-sm-9"><%= rezervacije[i].resID %> </dd>
+                        <dt class="col-sm-3">ID termina:</dt>
+                        <dd class="col-sm-9"><%= rezervacije[i].TerminID %> </dd>
+                        <dt class="col-sm-3">Vreme rezervacije:</dt>
+                        <dd class="col-sm-9"><%= rezervacije[i].vremerez%>h</dd>
+                        <dt class="col-sm-3">Polaziste:</dt>
+                        <dd class="col-sm-9"><%= termini[i].start%></dd>
+                        <dt class="col-sm-3">Odrediste:</dt>
+                        <dd class="col-sm-9"><%= termini[i].cilj%></dd>
+                        <dt class="col-sm-3">Prevoznik:</dt>
+                        <dd class="col-sm-9"><%= termini[i].imeprevoznika%></dd>
                         <dt class="col-sm-3">Datum:</dt>
-                        <dd class="col-sm-9"><%= termini[i].datum %> </dd>
-
-                        <dt class="col-sm-3">Vreme:</dt>
-                        <dd class="col-sm-9"><%= termini[i].vreme%>h</dd>
-
+                        <dd class="col-sm-9"><%= termini[i].datum%></dd>    
+                       <dt class="col-sm-3">Vreme:</dt>
+                        <dd class="col-sm-9"><%= termini[i].vreme%></dd>
                         <dt class="col-sm-3">Cena:</dt>
                         <dd class="col-sm-9"><%= termini[i].cena%></dd>
-
-                        <dt class="col-sm-3">Ime prevoznika:</dt>
-                        <dd class="col-sm-9"><%=termini[i].imeprevoznika%></dd>
-
-                        <dt class="col-sm-3">Vreme rezervacije:</dt>
-                        <dd class="col-sm-9"><%=termini[i].vremerez%></dd>
-
-                        <dt class="col-sm-3">Id rezervacije:</dt>
-                        <dd class="col-sm-9"><%=termini[i].resID%></dd>
-
                         <dt class="col-sm-3">Broj sedista:</dt>
-                        <dd class="col-sm-9"><%=termini[i].brojsedista%></dd>
+                        <dd class="col-sm-9"><%= rezervacije[i].brojsedista%></dd>
                         <button style="margin-left: 170px; margin-top: 20px; width: 150px;" class="btn btn-danger"
-                            data-toggle="modal" data-target="#myModal4<%= termini[i].resID %>">Otkazi rezervaciju</button>
+                            data-toggle="modal" data-target="#myModal4<%= rezervacije[i].resID %>">Otkaži rezervaciju</button>
 
                     </dl>
                     <hr>
                     <!-- pocetak modala -->
-                    <div class="modal" id="myModal4<%= termini[i].resID %>" tabindex="-1" role="dialog">
+                    <div class="modal" id="myModal4<%= rezervacije[i].resID %>" tabindex="-1" role="dialog">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Otkazivanje rezervacije <%= termini[i].resID %> </h5>
+                                    <h5 class="modal-title">Otkazivanje rezervacije <%= rezervacije[i].resID %> </h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -174,7 +174,7 @@
                                     <button type="button" class="btn btn-secondary"
                                         data-dismiss="modal">Odustani</button>
                                     <form method='post'
-                                        action='/profile/korisnik/<%=user.email%>/<%=termini[i].resID%>?_method=PUT''>
+                                        action='/profile/korisnik/<%=user.email%>/<%=rezervacije[i].resID%>?_method=DELETE'>
                                             <button type="submit" class="btn btn-danger">Izbrisi</button>
                                         </form>
                                     </div>

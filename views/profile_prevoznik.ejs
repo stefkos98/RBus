@@ -32,7 +32,8 @@
             <div class='col-md-9'>
                 <br>
                 <br>
-                <div id="id1" class='col-md-9'>
+                    
+                  <div id="id1" class='col-md-9'>
                     <% if(user!=undefined) {%>
                     <dl class="row">
                         <dt class="col-sm-3">Ime prevoznika</dt>
@@ -54,30 +55,31 @@
                     <%}%>
                 </div>
                 <div id="id2" class='col-md-9'>
+
                     <% if(user!=undefined) {%>
                     <form method='post' action='/profile/prevoznik/edit/<%=user.email%>?_method=PUT'>
                         <div class="form-group">
                             <label for="inputIme">Ime:</label>
-                            <input type="text" id="inputIme" class="form-control" name='name' value=<%= user.naziv %>
+                            <input type="text" id="inputIme" class="form-control" name='naziv' value=<%= user.naziv %>
                                 disabled>
                         </div>
                     
                         <div class="form-group">
                             <label for="inputTelefon">Telefon:</label>
                             <input type="text" id="inputTelefon" class="form-control" name='telefon'
-                                value="<%=user.phone%>" pattern="^06\d{7,8}$" title="Morate uneti format telefona."
+                                value="<%=user.telefon%>" pattern="^06\d{7,8}$" title="Morate uneti format telefona."
                                 required>
                         </div>
                         <div class="form-group">
                             <label for="inputUsername">Username:</label>
                             <input type="text" id="inputUsername" class="form-control" name='username'
-                                value=<%= user.username %> required>
+                                value=<%= user.username %> required disabled>
                         </div>
 
                         <div class="form-group">
                             <label for="inputEmail">Email:</label>
                             <input type="email" id="inputEmail" class="form-control" name='email'
-                                value=<%= user.email %> required>
+                                value=<%= user.email %> disabled required>
                             <small id="emailHelp" class="form-text text-muted">Necemo podeliti vasu adresu ni sa
                                 kim.</small>
                         </div>
@@ -128,66 +130,104 @@
                 <div id="id3" class='col-md-9'>
                     
                     <h1 style="color:rgb(0, 110, 255)">Stranica za izmenu linija i polazaka:</h1>
-                    <% if(termini!=undefined) {%>
-                    <% for(var i=0;i<termini.length;i++){%>
-
-                    <dl class="row">
-                        <dt class="col-sm-3">Datum:</dt>
-                        <dd class="col-sm-9"><%= termini[i].datum %> </dd>
-
-                        <dt class="col-sm-3">Vreme:</dt>
-                        <dd class="col-sm-9"><%= termini[i].vreme%>h</dd>
-
-                        <dt class="col-sm-3">Cena:</dt>
-                        <dd class="col-sm-9"><%= termini[i].cena%></dd>
-
-                        <dt class="col-sm-3">Ime prevoznika:</dt>
-                        <dd class="col-sm-9"><%=termini[i].imeprevoznika%></dd>
-
-                        <dt class="col-sm-3">Vreme rezervacije:</dt>
-                        <dd class="col-sm-9"><%=termini[i].vremerez%></dd>
-
-                        <dt class="col-sm-3">Id rezervacije:</dt>
-                        <dd class="col-sm-9"><%=termini[i].resID%></dd>
-
-                        <dt class="col-sm-3">Broj sedista:</dt>
-                        <dd class="col-sm-9"><%=termini[i].brojsedista%></dd>
-                        <button style="margin-left: 170px; margin-top: 20px; width: 150px;" class="btn btn-danger"
-                            data-toggle="modal" data-target="#myModal4<%= termini[i].resID %>">Otkazi rezervaciju</button>
-
-                    </dl>
+                    <button class='btn btn-info'onclick="location.href='/profile/prevoznik/dodajpolazak'" type="button">
+                        Dodavanje polaska</button> 
                     <hr>
-                    <!-- pocetak modala -->
-                    <div class="modal" id="myModal4<%= termini[i].resID %>" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Otkazivanje rezervacije <%= termini[i].resID %> </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Da li ste sigurni da zelite da otkazete ovu rezervaciju?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-dismiss="modal">Odustani</button>
-                                    <form method='post'
-                                        action='/profile/korisnik/<%=user.email%>/<%=termini[i].resID%>?_method=PUT''>
-                                            <button type="submit" class="btn btn-danger">Izbrisi</button>
-                                        </form>
+                    <% if(linije!=undefined) {%>
+                    <% for(var i=0;i<linije.length;i++){%>
+
+                        <div class='row'>
+                    
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">Polaziste</th>
+                                            <th scope="col">Odrediste</th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                        <tr>
+                                            <td scope="col"><%=linije[i].start%></td>
+                                            <td scope="col"><%=linije[i].cilj%></td>
+                                            <td scope='col'></td>
+                                            <td scope='col'></td>
+                                            <td scope='col'></td>
+                                            <td scope='col'></td>
+                                            <td scope='col'></td>
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Datum</th>
+                                            <th scope="col">Vreme</th>
+                                            <th scope="col">Cena</th>
+                                            <th scope="col">Broj mesta:</th>
+                                            <th scope="col">Popunjena mesta:</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        <% for(var j=0;j<termini[i].length;j++){%>
+        
+                                        <tr>
+                                            <th scope="row"><%=j+1%></th>
+                                            <td><%=termini[i][j].datum%></td>
+                                            <td><%=termini[i][j].vreme%></td>
+                                            <td><%=termini[i][j].cena%></td>
+                                            <td><%=termini[i][j].mesta%></td>
+                                            <td><%=termini[i][j].popunjena%></td>
+                                            <td><button class="btn btn-danger btn-sm" data-toggle="modal"
+                                                data-target="#myModalObrisiTermin<%= termini[i][j].TerminID %>">Obriši polazak</button>
+                                        </td>
+    
+                                    </tr>
+                                    <!-- pocetak modala -->
+                                    <div class="modal" id="myModalObrisiTermin<%= termini[i][j].TerminID %>" tabindex="-1"
+                                        role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Brisanje termina <%= termini[i][j].TerminID %>
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Da li ste sigurni da želite da izbrišete termin? Brisanjem termina otkazuju se i sve rezervacije za taj termin.</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Odustani</button>
+                                                    <form method='post'
+                                                        action='/profile/prevoznik/<%-JSON.stringify(termini[i][j])%>?_method=DELETE'>
+                                                        <button type="submit" class="btn btn-danger">Izbriši</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                    <!-- kraj modala -->
+                                        </tr>
+                                        <%}%>
+                                    </tbody>
+                                </table>
                             </div>
-                        </div>
-                        <!-- kraj modala -->
+        
+                    </div>
+                    <hr>
                    <%}%>
                   
                   <hr>
                    <%}else{%>
                     <br>                  
-                    <h4>Nema rezervacija.</h4>
+                    <h4>Nema polazaka.</h4>
                    <%}%>
 
                     
