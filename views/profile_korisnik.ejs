@@ -139,17 +139,17 @@
                         <dt class="col-sm-3">Vreme rezervacije:</dt>
                         <dd class="col-sm-9"><%= rezervacije[i].vremerez%>h</dd>
                         <dt class="col-sm-3">Polaziste:</dt>
-                        <dd class="col-sm-9"><%= termini[i].start%></dd>
+                        <dd class="col-sm-9"><%= termini[i][0].start%></dd>
                         <dt class="col-sm-3">Odrediste:</dt>
-                        <dd class="col-sm-9"><%= termini[i].cilj%></dd>
+                        <dd class="col-sm-9"><%= termini[i][0].cilj%></dd>
                         <dt class="col-sm-3">Prevoznik:</dt>
-                        <dd class="col-sm-9"><%= termini[i].imeprevoznika%></dd>
+                        <dd class="col-sm-9"><%= termini[i][0].imeprevoznika%></dd>
                         <dt class="col-sm-3">Datum:</dt>
-                        <dd class="col-sm-9"><%= termini[i].datum%></dd>    
+                        <dd class="col-sm-9"><%= termini[i][0].datum%></dd>    
                        <dt class="col-sm-3">Vreme:</dt>
-                        <dd class="col-sm-9"><%= termini[i].vreme%></dd>
+                        <dd class="col-sm-9"><%= termini[i][0].vreme%></dd>
                         <dt class="col-sm-3">Cena:</dt>
-                        <dd class="col-sm-9"><%= termini[i].cena%></dd>
+                        <dd class="col-sm-9"><%= termini[i][0].cena%></dd>
                         <dt class="col-sm-3">Broj sedista:</dt>
                         <dd class="col-sm-9"><%= rezervacije[i].brojsedista%></dd>
                         <button style="margin-left: 170px; margin-top: 20px; width: 150px;" class="btn btn-danger"

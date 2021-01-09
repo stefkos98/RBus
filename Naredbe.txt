@@ -1,8 +1,5 @@
 Baze naredbe
 CREATE KEYSPACE rbus;
-funkcija uuid() generise jedinstveni id
-id uuid tip
-TRUNCATE -removes all data
 CREATE TABLE "Autoprevoznik"(
     "AutoprevoznikID" uuid,
 	username text,
@@ -12,45 +9,54 @@ CREATE TABLE "Autoprevoznik"(
 	telefon text,
 	PRIMARY KEY (email,"AutoprevoznikID")
 );
-INSERT INTO rbus."Autoprevoznik" ("AutoprevoznikID",username,password,email,naziv,telefon)
-VALUES(uuid(),'jugo65','abc123','stefan@hotmail.com','Jugoprevoz','061234567');
 
 CREATE TABLE "Linija"(
-  "start" text,
-  "cilj" text,
+  start text,
+  cilj text,
   "LinijaID" uuid,
-  PRIMARY KEY ("LinijaID")
+  PRIMARY KEY ((start,cilj))
 );
-CREATE TABLE "TerminType"(
-"TerminTypeId" uuid,
-"AutoprevoznikID" uuid,
-"LinijaID" uuid,
- dan text,
- vreme text,
- cena int,
- mesta int,
- PRIMARY KEY ("TerminTypeId","LinijaID")
-);
+
 CREATE TABLE "Termin"(
   "TerminID" uuid,
-  "TerminTypeID" uuid,
+  imeprevoznika text,
+  "AutoprevoznikID" uuid,
+  "LinijaID" uuid,
   mesta int,
   popunjena int,
+  vreme text,
+  cena int,
   datum text,
-  PRIMARY KEY ("TerminTypeID", datum,"TerminID")
+  start text,
+  cilj text,
+  PRIMARY KEY (("LinijaID",datum),imeprevoznika,"TerminID",vreme)
 );
+
 CREATE TABLE "Sedista"(
   "TerminID" uuid,
   "brojsedista" int,
   PRIMARY KEY ("TerminID","brojsedista")
 );
+
 CREATE TABLE "Rezervacija" (
-    "resID" text,
+    "resID" uuid,
 	"TerminID" uuid,
-	vremerez date,
+	vremerez text,
     "userID" uuid,
-    PRIMARY KEY ("resID","TerminID","userID")
+    "brojsedista" int,
+    "LinijaID" uuid,
+    datum text,
+    imeprevoznika text,
+    PRIMARY KEY ("userID","resID","TerminID")
 );
+
+CREATE TABLE "TerminRezervacija"(
+  "TerminID" uuid,
+  "userID" uuid,
+  "resID" uuid,
+  PRIMARY KEY ("TerminID","userID","resID")
+);
+
 CREATE TABLE "Korisnik"(
    id   uuid,
    username text,

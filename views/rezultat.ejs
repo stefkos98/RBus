@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>RBus</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="pom.css">
+    </head>
+    <body>
+        <%- include("partials/navbar.ejs") %>
+        <div class='container'>
+            <ul>
+                <div class='jumbotron'>
+                    <% if(povratna=="NE") {%>
+                        <h1><%=polaziste%>-<%=odrediste%>:</h1>
+                    <%}else {%>
+                        <div class='row'>
+                            <div class="col-sm">
+                                <h1><%=polaziste%>-<%=odrediste%>:</h1>
+                            </div>
+                            
+                            <div class="col-sm">
+                                <h1><%=odrediste%>-<%=polaziste%>:</h1>
+                            </div>
+                        
+                        </div>
+                    <%}%>
+                    <% if(povratna=="NE") {%>
+                        <h6>polazak: <%=datum1%></h6>
+                    <%}else {%>
+                        <div class='row'>
+                            <div class="col-sm">
+                                <h6>polazak: <%=datum1%></h6>
+                            </div>
+                            
+                            <div class="col-sm">
+                                <h6 >povratak: <%=datum2%></h6>
+                            </div>
+                        
+                        </div>
+                    <%}%>
+                </div>
+                
+                <div class='row'>
+                    <% if(povratna=="DA") {%><div class="col-sm"> <%}%>
+                    
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="cola">#</th>
+                                        <th scope="col">Vreme polaska</th>
+                                        <%if (brputnika==1){%>
+                                            <th scope="col">Cena karte</th>
+                                        <%}else{%>
+                                            <th scope="col">Cena karata</th>
+                                        <%}%>
+                                        <th scope="col">Autoprevoznik</th>
+                                        <th scope="col">Cekiraj termin</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(var i=0;i<termini1.length;i++){%>
+    
+                                    <tr>
+                                        <th scope="row"><%=i+1%></th>
+                                        <td><%=termini1[i].vreme%></td>
+                                        <td><%=termini1[i].cena*brputnika%></td>
+                                        <% if(prevoznik==undefined) {%>
+                                            <td><%=termini1[i].imeprevoznika%></td>
+                                        <%}else {%>
+                                            <td><%=prevoznik%></td>
+                                        <%}%>
+                                        <%if (povratna=="NE"){%>
+                                        <% if(user!= undefined){%>
+                                            <% if(prevoznik==undefined) {%>
+                                                <form method='post' action='/rezervisi/<%=polaziste%>/<%=odrediste%>/<%=user.id%>/<%=brputnika%>/<%=termini1[i].mesta%>/<%=termini1[i].TerminID%>/<%=IDLinije1%>/<%=IDLinije2%>/<%=datum1%>/<%=datum2%>/<%=termini1[i].imeprevoznika%>/<%=termini1[i].vreme%>/<%=termini1[i].popunjena%>' class="form-container">
+                                                    <td><button type="submit" class="btn btn-dark">Rezervisi</button></td>
+                                                </form>
+                                            <%}else{%>
+                                                <form method='post' action='/rezervisi/<%=polaziste%>/<%=odrediste%>/<%=user.id%>/<%=brputnika%>/<%=termini1[i].mesta%>/<%=termini1[i].TerminID%>/<%=IDLinije1%>/<%=IDLinije2%>/<%=datum1%>/<%=datum2%>/<%=prevoznik%>/<%=termini1[i].vreme%>/<%=termini1[i].popunjena%>' class="form-container">
+                                                    <td><button type="submit" class="btn btn-dark">Rezervisi</button></td>
+                                                </form>
+                                            <%}%>
+                                        <%}else{%>
+                                        <form method='post' action='/rezervisi/<%=brputnika%>/<%=termini1[i].mesta%>/<%=termini1[i].TerminID%>' class="form-container">
+                                            <td><button type="submit" class="btn btn-dark">Rezervisi</button></td>
+                                        </form>
+                                        <%}%>
+                                        <%}else{%>
+                                            <% if(prevoznik==undefined) {%>
+                                                <% if(i==0) {%>
+                                                    <td><input style="margin-left: 15px;" class="form-check-input cekirano" type="radio" name="cekirano" value="<%=termini1[i].mesta%> <%=termini1[i].TerminID%> <%=termini1[i].imeprevoznika%> <%=termini1[i].vreme%> <%=termini1[i].popunjena%>" checked>
+                                                    <label class="form-check-label" for="exampleRadios1"></label></td>
+                                                <%}else{%>
+                                                    <td><input style="margin-left: 15px;" class="form-check-input cekirano" type="radio" name="cekirano" value="<%=termini1[i].mesta%> <%=termini1[i].TerminID%> <%=termini1[i].imeprevoznika%> <%=termini1[i].vreme%> <%=termini1[i].popunjena%>">
+                                                    <label class="form-check-label" for="exampleRadios1"></label></td>
+                                                <%}%>  
+                                            <%}else{%>
+                                                <% if(i==0) {%>
+                                                    <td><input style="margin-left: 15px;" class="form-check-input cekirano" type="radio" name="cekirano" value="<%=termini1[i].mesta%> <%=termini1[i].TerminID%> <%=prevoznik%> <%=termini1[i].vreme%> <%=termini1[i].popunjena%>" checked>
+                                                    <label class="form-check-label" for="exampleRadios1"></label></td>
+                                                <%}else{%>
+                                                    <td><input style="margin-left: 15px;" class="form-check-input cekirano" type="radio" name="cekirano" value="<%=termini1[i].mesta%> <%=termini1[i].TerminID%> <%=prevoznik%> <%=termini1[i].vreme%> <%=termini1[i].popunjena%>">
+                                                    <label class="form-check-label" for="exampleRadios1"></label></td>
+                                                 <%}%>  
+                                            <%}%>    
+                                        <%}%>
+                                    </tr>
+                                    <%}%>
+                                </tbody>
+                            </table>
+                        </div>
+    
+                        <% if(povratna=="DA") {%></div> <%}%>
+                <div class="col-sm">
+                <%if (povratna=="DA"){%>
+                    
+                    <div class='row'>
+                    
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Vreme povratka</th>
+                                        <%if (brputnika==1){%>
+                                            <th scope="col">Cena karte</th>
+                                        <%}else{%>
+                                            <th scope="col">Cena karata</th>
+                                        <%}%>
+                                        <th scope="col">Autoprevoznik</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(var i=0;i<termini2.length;i++){%>
+    
+                                    <tr>
+                                        <th scope="row"><%=i+1%></th>
+                                        <td><%=termini2[i].vreme%></td>
+                                        <td><%=termini2[i].cena*brputnika%></td>
+                                        <% if(prevoznik==undefined) {%>
+                                            <td><%=termini2[i].imeprevoznika%></td>
+                                        <%}else {%>
+                                            <td><%=prevoznik%></td>
+                                        <%}%>
+                                        <% if(user!= undefined){%>
+                                            <% if(prevoznik==undefined) {%>
+                                                <form method='post' action='/rezervisi/<%=polaziste%>/<%=odrediste%>/<%=user.id%>/<%=brputnika%>/<%=termini2[i].mesta%>/<%=termini2[i].TerminID%>/<%=IDLinije1%>/<%=IDLinije2%>/<%=datum1%>/<%=datum2%>/<%=termini2[i].imeprevoznika%>/<%=termini2[i].vreme%>/<%=termini2[i].popunjena%>' class="form-container">
+                                                    
+                                                    <td><button type="submit" class="btn btn-dark">Rezervisi</button></td>
+                                                    <input style="display:none" type="text" name="first" class="first" />
+                                                </form>
+                                            <%}else{%>
+                                                <form method='post' action='/rezervisi/<%=polaziste%>/<%=odrediste%>/<%=user.id%>/<%=brputnika%>/<%=termini2[i].mesta%>/<%=termini2[i].TerminID%>/<%=IDLinije1%>/<%=IDLinije2%>/<%=datum1%>/<%=datum2%>/<%=prevoznik%>/<%=termini2[i].vreme%>/<%=termini2[i].popunjena%>' class="form-container">
+                                                    
+                                                    <td><button type="submit" class="btn btn-dark">Rezervisi</button></td>
+                                                    <input style="display:none" type="text" name="second" class="second" />
+                                                </form>
+                                            <%}%>
+                                        <%}else{%>
+                                        <form method='post' action='/rezervisi/<%=brputnika%>/<%=termini2[i].mesta%>/<%=termini2[i].TerminID%>' class="form-container">
+                                            <td><button type="submit" class="btn btn-dark">Rezervisi</button></td>
+                                        </form>
+                                        <%}%>
+                                    </tr>
+                                    <%}%>
+                                </tbody>
+                            </table>
+                        </div>
+    
+                    </div>
+                    
+                <%}%>
+            </div>
+            
+        </div>
+            </ul>
+        </div>
+        <%- include("partials/footer.ejs") %>
+
+        <script src="pom.js"></script>
+        <script src="" async defer></script>
+        <script>
+            $(document).ready(function() {
+                var ulaz=document.querySelector('input[type=radio][name="cekirano"]');
+                var first=document.querySelectorAll(".first");
+                    var second=document.querySelectorAll(".second");
+                    for(var i=0; i<first.length; i++)
+                    {
+                        first[i].value=ulaz.value;
+                    }
+                    for(var i=0; i<second.length; i++)
+                    {
+                        second[i].value=ulaz.value;
+                    }   
+                $('input[type=radio][name="cekirano"]').change(function() {
+                    
+                    for(var i=0; i<first.length; i++)
+                    {
+                        first[i].value=this.value;
+                    }
+                    for(var i=0; i<second.length; i++)
+                    {
+                        second[i].value=this.value;
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

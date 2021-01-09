@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>RBus</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="pom.css">
+    </head>
+    <body>
+        <%- include("partials/navbar.ejs") %>
+            <div class='container' style='width:50%;'>
+                
+            <input style="display:none" id="skriven" value="<%=brputnika%>">
+                <form method="post" action='/rezervisi2/<%=polaziste%>/<%=odrediste%>/<%=prazna1.length%>/<%=prazna2.length%>/<%=user.id%>/<%=brputnika%>/<%=mesta1%>/<%=mesta2%>/<%=TerminID1%>/<%=TerminID2%>/<%=IDLinije1%>/<%=IDLinije2%>/<%=datum1%>/<%=datum2%>/<%=prevoznik1%>/<%=prevoznik2%>/<%=vreme1%>/<%=vreme2%>/<%=popunjena1%>/<%=popunjena2%>?_method=PUT'>
+                    <h1 class="h2 mb-3 font-weight-normal" style='margin-top:5%;'>Izaberite redni broj sedista</h1>
+                    <h1 class="h2 mb-3 font-weight-normal" style='margin-top:5%;'><%=polaziste%>-<%=odrediste%></h1>
+                    <%if (brputnika==1){%> <h6  style='margin-top:5%;'>Treba izabrati <%=brputnika%> sediste</h6><%}%>
+                    <%if (brputnika>1){%> <h6 style='margin-top:5%;'>Treba izabrati <%=brputnika%> sedista</h6><%}%>
+<div>
+                    <%if(prazna1.length>=1){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="jedan" value="<%=prazna1[0]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[0]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=2){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="dva" value="<%=prazna1[1]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[1]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=3){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="tri" value="<%=prazna1[2]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[2]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=4){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="cetiri" value="<%=prazna1[3]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[3]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=5){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="pet" value="<%=prazna1[4]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[4]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=6){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="sest" value="<%=prazna1[5]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[5]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=7){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="sedam" value="<%=prazna1[6]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[6]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=8){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="osam" value="<%=prazna1[7]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[7]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=9){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="devet" value="<%=prazna1[8]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[8]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=10){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="deset" value="<%=prazna1[9]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[9]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=11){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="jedanaest" value="<%=prazna1[10]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[10]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=12){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="dvanaest" value="<%=prazna1[11]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[11]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=13){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="trinaest" value="<%=prazna1[12]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[12]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=14){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="cetrnaest" value="<%=prazna1[13]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[13]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=15){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="petnaest" value="<%=prazna1[14]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[14]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=16){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="sesnaest" value="<%=prazna1[15]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[15]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=17){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="sedamnaest" value="<%=prazna1[16]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[16]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=18){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="osamnaest" value="<%=prazna1[17]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[17]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=19){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="devetnaest" value="<%=prazna1[18]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[18]%></label>
+                    <%}%>                   
+                    <%if(prazna1.length>=20){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="dvadeset" value="<%=prazna1[19]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[19]%></label>
+                    <%}%>
+                    
+                    <%if(prazna1.length>=21){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="dvadesetjedan" value="<%=prazna1[20]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[20]%></label>
+                    <%}%>
+                    
+                    <%if(prazna1.length>=22){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="dvadesetdva" value="<%=prazna1[21]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[21]%></label>
+                    <%}%>
+                    
+                    <%if(prazna1.length>=23){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="dvadesettri" value="<%=prazna1[22]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[22]%></label>
+                    <%}%>
+                    
+                    <%if(prazna1.length>=24){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="dvadesetcetri" value="<%=prazna1[23]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[23]%></label>
+                    <%}%>
+                    
+                    <%if(prazna1.length>=25){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="dvadesetpet" value="<%=prazna1[24]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[24]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=26){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="dvadesetsest" value="<%=prazna1[25]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[25]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=27){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="dvadesetsedam" value="<%=prazna1[26]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[26]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=28){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="dvadesetosam" value="<%=prazna1[27]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[27]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=29){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="dvadesetdevet" value="<%=prazna1[28]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[28]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=30){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="trideset" value="<%=prazna1[29]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[29]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=31){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="tridesetjedan" value="<%=prazna1[30]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[30]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=32){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="tridesetdva" value="<%=prazna1[31]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[31]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=33){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="tridesettri" value="<%=prazna1[32]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[32]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=34){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="tridesetcetri" value="<%=prazna1[33]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[33]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=35){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="tridesetpet" value="<%=prazna1[34]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[34]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=36){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="tridesetsest" value="<%=prazna1[35]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[35]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=37){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="tridesetsedam" value="<%=prazna1[36]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[36]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=38){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="tridesetosam" value="<%=prazna1[37]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[37]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=39){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="tridesetdevet" value="<%=prazna1[38]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[38]%></label>
+                    <%}%>
+                    <%if(prazna1.length>=40){%>
+                            <input class="form-check-input0" type="checkbox" id="inlineCheckbox2" name="cetrdeset" value="<%=prazna1[39]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna1[39]%></label>
+                    <%}%>
+                </div>
+                    <h1 class="h2 mb-3 font-weight-normal" style='margin-top:5%;'><%=odrediste%>-<%=polaziste%></h1>
+                    <%if (brputnika==1){%> <h6  style='margin-top:5%;'>Treba izabrati <%=brputnika%> sediste</h6><%}%>
+                    <%if (brputnika>1){%> <h6 style='margin-top:5%;'>Treba izabrati <%=brputnika%> sedista</h6><%}%>
+
+                    <%if(prazna2.length>=1){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="jedanD" value="<%=prazna2[0]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[0]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=2){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="dvaD" value="<%=prazna2[1]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[1]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=3){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="triD" value="<%=prazna2[2]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[2]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=4){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="cetiriD" value="<%=prazna2[3]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[3]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=5){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="petD" value="<%=prazna2[4]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[4]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=6){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="sestD" value="<%=prazna2[5]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[5]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=7){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="sedamD" value="<%=prazna2[6]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[6]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=8){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="osamD" value="<%=prazna2[7]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[7]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=9){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="devetD" value="<%=prazna2[8]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[8]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=10){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="desetD" value="<%=prazna2[9]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[9]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=11){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="jedanaestD" value="<%=prazna2[10]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[10]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=12){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="dvanaestD" value="<%=prazna2[11]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[11]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=13){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="trinaestD" value="<%=prazna2[12]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[12]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=14){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="cetrnaestD" value="<%=prazna2[13]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[13]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=15){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="petnaestD" value="<%=prazna2[14]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[14]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=16){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="sesnaestD" value="<%=prazna2[15]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[15]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=17){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="sedamnaestD" value="<%=prazna2[16]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[16]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=18){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="osamnaestD" value="<%=prazna2[17]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[17]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=19){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="devetnaestD" value="<%=prazna2[18]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[18]%></label>
+                    <%}%>                   
+                    <%if(prazna2.length>=20){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="dvadesetD" value="<%=prazna2[19]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[19]%></label>
+                    <%}%>
+                    
+                    <%if(prazna2.length>=21){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="dvadesetjedanD" value="<%=prazna2[20]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[20]%></label>
+                    <%}%>
+                    
+                    <%if(prazna2.length>=22){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="dvadesetdvaD" value="<%=prazna2[21]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[21]%></label>
+                    <%}%>
+                    
+                    <%if(prazna2.length>=23){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="dvadesettriD" value="<%=prazna2[22]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[22]%></label>
+                    <%}%>
+                    
+                    <%if(prazna2.length>=24){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="dvadesetcetriD" value="<%=prazna2[23]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[23]%></label>
+                    <%}%>
+                    
+                    <%if(prazna2.length>=25){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="dvadesetpetD" value="<%=prazna2[24]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[24]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=26){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="dvadesetsestD" value="<%=prazna2[25]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[25]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=27){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="dvadesetsedamD" value="<%=prazna2[26]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[26]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=28){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="dvadesetosamD" value="<%=prazna2[27]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[27]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=29){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="dvadesetdevetD" value="<%=prazna2[28]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[28]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=30){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="tridesetD" value="<%=prazna2[29]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[29]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=31){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="tridesetjedanD" value="<%=prazna2[30]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[30]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=32){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="tridesetdvaD" value="<%=prazna2[31]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[31]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=33){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="tridesettriD" value="<%=prazna2[32]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[32]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=34){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="tridesetcetriD" value="<%=prazna2[33]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[33]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=35){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="tridesetpetD" value="<%=prazna2[34]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[34]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=36){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="tridesetsestD" value="<%=prazna2[35]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[35]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=37){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="tridesetsedamD" value="<%=prazna2[36]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[36]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=38){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="tridesetosamD" value="<%=prazna2[37]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[37]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=39){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="tridesetdevetD" value="<%=prazna2[38]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[38]%></label>
+                    <%}%>
+                    <%if(prazna2.length>=40){%>
+                            <input class="form-check-input1" type="checkbox" id="inlineCheckbox2" name="cetrdesetD" value="<%=prazna2[39]%>">
+                            <label class="form-check-label" for="inlineCheckbox2"><%=prazna2[39]%></label>
+                    <%}%>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Rezervisi</button>
+                  
+                    </form>
+                  </div>
+        <%- include("partials/footer.ejs") %>
+
+        <script src="" async defer></script>
+        <script>
+            var limit = document.getElementById('skriven');
+            var x=parseInt(limit.value);
+            $('input.form-check-input0').on('change', function(evt) {
+                if($(this).siblings(':checked').length >= x) {
+                    this.checked = false;
+                }
+            });
+            $('input.form-check-input1').on('change', function(evt) {
+                if($(this).siblings(':checked').length >= x) {
+                    this.checked = false;
+                }
+            });
+        </script>
+    </body>
+</html>
